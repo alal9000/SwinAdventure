@@ -10,6 +10,7 @@ namespace SwinAdventure
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
