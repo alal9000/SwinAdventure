@@ -12,57 +12,82 @@ namespace SwinAdventure
     public class TestInventory
     {
         // arrange
-        private Inventory inventory;
+        Inventory _inventory;
 
         [SetUp]
         public void SetUp()
         {
-            inventory = new Inventory();
+           _inventory = new Inventory();
         }
 
         // act and assert
         [Test]
         public void TestFindItem()
         {
-            //bool result = _identifiableObject.AreYou("fred");
-            //Assert.That(result, Is.True);
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            _inventory.Put(shovel);
+            Item item = _inventory.Fetch("shovel");
+            bool result = item.AreYou("gem");
+
+            Assert.That(result, Is.False);
+
+
         }
 
         [Test]
         public void TestNoItemFind()
         {
-            //bool result1 = _identifiableObject.AreYou("wilma");
-            //bool result2 = _identifiableObject.AreYou("boby");
-            //Assert.That(result1 && result2, Is.False);
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            _inventory.Put(shovel);
+            Item item = _inventory.Fetch("shovel");
+            bool result = item.AreYou("gem");
+
+            Assert.That(result, Is.False);
         }
 
         [Test]
         public void TestFetchItem()
         {
-            //bool result1 = _identifiableObject.AreYou("FRED");
-            //bool result2 = _identifiableObject.AreYou("bOB");
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            _inventory.Put(shovel);
+            List<string> items = _inventory.ItemList;
+            Item item = _inventory.Fetch("shovel");
+            bool result = item.AreYou("shovel");
 
-            //Assert.That(result1 && result2, Is.True);
+            Assert.That(result, Is.True);
+            Assert.That(items.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void TestTakeItem()
         {
-            //string result = _identifiableObject.FirstId;
 
-            //Assert.That(result, Is.EqualTo("fred"));
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            _inventory.Put(shovel);
+            Item item = _inventory.Take("shovel");
+            bool result = item.AreYou("shovel");
+            List<string> items = _inventory.ItemList;
+
+            Assert.That(result, Is.True);
+            Assert.That(items.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void TestItemList()
         {
-            //_identifiableObject.AddIdentifier("wilma");
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            Item gem = new Item(new string[] { "gem", "treasure" }, "a gem", "This is a mighty fine gem");
+            _inventory.Put(shovel);
+            _inventory.Put(gem);
+            List<string> items = _inventory.ItemList;
 
-            //bool result1 = _identifiableObject.AreYou("wilma");
-            //bool result2 = _identifiableObject.AreYou("fred");
-            //bool result3 = _identifiableObject.AreYou("bob");
+            List<string> expectedItems = new List<string>()
+            {
+                "\ta shovel (shovel)", 
+                "\ta gem (gem)"        
+            };
 
-            //Assert.That(result1 && result2 && result3, Is.True);
+            Assert.That(items, Is.EqualTo(expectedItems));
         }
 
     }

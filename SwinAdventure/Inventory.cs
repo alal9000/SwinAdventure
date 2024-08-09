@@ -15,6 +15,7 @@ namespace SwinAdventure
         // constructor
         public Inventory()
         {
+            _items = new List<Item>();
         }
 
         // properties
@@ -38,7 +39,7 @@ namespace SwinAdventure
             _items.Add(item);
         }
 
-        public Item Take(string id)
+        public Item Fetch(string id)
         {
 
             foreach (Item item in _items)
@@ -52,7 +53,7 @@ namespace SwinAdventure
             return null;
         }
 
-        public Item Fetch(string id)
+        public Item Take(string id)
         {
             for (int i = 0; i < _items.Count; i++)
             {
