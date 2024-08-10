@@ -12,7 +12,7 @@ namespace SwinAdventure
     public class TestSwinAdventure
     {
         // arrange
-        private IdentifiableObject _identifiableObject;
+        IdentifiableObject _identifiableObject;
 
         [SetUp]
         public void SetUp() 

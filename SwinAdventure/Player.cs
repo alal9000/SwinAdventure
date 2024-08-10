@@ -14,15 +14,29 @@ namespace SwinAdventure
 
         public Player(string name, string desc) : base( new string[] { "me", "inventory" }, name, desc)
         {
+            _inventory = new Inventory();
         }
 
         public Inventory Inventory { get => _inventory; }
 
-        public override string FullDescription { get => "placeholder text"; }
+        public override string FullDescription { 
+            get
+            {
+                string itemDescriptions = string.Join("\n", Inventory.ItemList);
+                return "You are carrying:\n" + itemDescriptions;
+            }
+        }
 
         public GameObject Locate(string id)
         {
-            return new Item(new string[] { "test1", "test2" }, "Aaron", "Mighty programmer");
+            if (id == "me" || id == "inventory")
+                return this;
+
+            if (this._inventory.Fetch(id) != null)
+                return this._inventory.Fetch(id);           
+            else
+                return null;
+
         }
 
 

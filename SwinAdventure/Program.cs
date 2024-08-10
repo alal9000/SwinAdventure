@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;   
 
@@ -11,19 +12,46 @@ namespace SwinAdventure
     {
         static void Main(string[] args)
         {
+            Player player = new Player("Aaron", "A mighty programmer");
 
-            Inventory _inventory = new Inventory();
+            //bool result1 = player.AreYou("me");
+            //bool result2 = player.AreYou("inventory");
+
+            //Console.WriteLine(result1);
+            //Console.WriteLine(result2);
 
             Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
-            Item gem = new Item(new string[] { "gem", "treasure" }, "a gem", "This is a mighty fine gem");
-            _inventory.Put(shovel);
-            _inventory.Put(gem);
-            List<string> items = _inventory.ItemList;
+            Item sword = new Item(new string[] { "sword", "bronze sword" }, "a bronze sword", "This is a mighty fine sword");
+            Item computer = new Item(new string[] { "pc", "computer" }, "a small computer", "This is a mighty fine computer");
 
-            foreach (string item in items)
+            player.Inventory.Put(shovel);
+            player.Inventory.Put(sword);
+            player.Inventory.Put(computer);
+
+
+            //GameObject item = player.Locate("shovel");
+            //Console.WriteLine(item.ShortDescription);
+            //Console.WriteLine(player.Inventory.ItemList.Count);
+
+            //GameObject p = player.Locate("gem");
+
+
+            //if (p == null)
+            //    Console.WriteLine("the player does not have this item");
+            //else
+            //    Console.WriteLine(p.Name);
+
+
+            List<string> s = player.Inventory.ItemList;
+
+            foreach (string item in s)
             {
                 Console.WriteLine(item);
             }
+
+
+
         }
     }
+   
 }

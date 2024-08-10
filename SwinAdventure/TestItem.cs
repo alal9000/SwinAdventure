@@ -12,7 +12,7 @@ namespace SwinAdventure
     public class TestItem
     {
         // arrange
-        private Item _item;
+        Item _item;
 
         [SetUp]
         public void SetUp()

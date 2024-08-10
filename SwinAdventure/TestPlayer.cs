@@ -12,58 +12,70 @@ namespace SwinAdventure
     public class TestPlayer
     {
         // arrange
-        private IdentifiableObject _identifiableObject;
+        Player player;
 
         [SetUp]
         public void SetUp()
         {
-            string[] test = { "fred", "bob" };
-            _identifiableObject = new IdentifiableObject(test);
+            player = new Player("Aaron", "A mighty programmer");
         }
 
         // act and assert
         [Test]
-        public void TestAreYou()
+        public void TestPlayerIsIdentifiable()
         {
-            bool result = _identifiableObject.AreYou("fred");
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void TestNotAreYou()
-        {
-            bool result1 = _identifiableObject.AreYou("wilma");
-            bool result2 = _identifiableObject.AreYou("boby");
-            Assert.That(result1 && result2, Is.False);
-        }
-
-        [Test]
-        public void TestCaseSensitive()
-        {
-            bool result1 = _identifiableObject.AreYou("FRED");
-            bool result2 = _identifiableObject.AreYou("bOB");
-
+            bool result1 = player.AreYou("me");
+            bool result2 = player.AreYou("inventory");
             Assert.That(result1 && result2, Is.True);
         }
 
         [Test]
-        public void TestFirstID()
+        public void TestPlayerLocatesItems()
         {
-            string result = _identifiableObject.FirstId;
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            player.Inventory.Put(shovel);
+            GameObject item = player.Locate("shovel");
 
-            Assert.That(result, Is.EqualTo("fred"));
+            Assert.That(item.ShortDescription, Is.EqualTo("a shovel (shovel)"));
+            Assert.That(player.Inventory.ItemList.Count, Is.EqualTo(1));
         }
 
         [Test]
-        public void TestAddID()
+        public void TestPlayerLocatesItself()
         {
-            _identifiableObject.AddIdentifier("wilma");
+            GameObject p1 = player.Locate("me");
+            GameObject p2 = player.Locate("inventory");
 
-            bool result1 = _identifiableObject.AreYou("wilma");
-            bool result2 = _identifiableObject.AreYou("fred");
-            bool result3 = _identifiableObject.AreYou("bob");
+            Assert.That(p1.Name, Is.EqualTo("Aaron"));
+            Assert.That(p2.Name, Is.EqualTo("Aaron"));
+        }
 
-            Assert.That(result1 && result2 && result3, Is.True);
+        [Test]
+        public void TestPlayerLocatesNothing()
+        {
+            GameObject p = player.Locate("gem");
+
+            Assert.That(p, Is.Null);
+        }
+
+        [Test]
+        public void TestPlayerFullDescription()
+        {
+            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            Item sword = new Item(new string[] { "sword", "short sword" }, "a bronze sword", "This is a mighty fine sword");
+            Item computer = new Item(new string[] { "pc", "computer" }, "a small computer", "This is a mighty fine computer");
+
+            player.Inventory.Put(shovel);
+            player.Inventory.Put(sword);
+            player.Inventory.Put(computer);
+
+            string fd = player.FullDescription;
+            Assert.That(fd, Is.EqualTo("You are carrying:\n" +
+                "\ta shovel (shovel)\n" +
+                "\ta bronze sword (sword)\n" +
+                "\ta small computer (pc)"
+                ));
+            Assert.That(player.Inventory.ItemList.Count, Is.EqualTo(3));
         }
 
     }
