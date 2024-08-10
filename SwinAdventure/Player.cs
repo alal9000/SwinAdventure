@@ -10,13 +10,16 @@ namespace SwinAdventure
 {
     public class Player : GameObject
     {
+        // fields
         private Inventory _inventory;
 
+        // constructor
         public Player(string name, string desc) : base( new string[] { "me", "inventory" }, name, desc)
         {
             _inventory = new Inventory();
         }
 
+        // properties
         public Inventory Inventory { get => _inventory; }
 
         public override string FullDescription { 
@@ -27,6 +30,7 @@ namespace SwinAdventure
             }
         }
 
+        // methods
         public GameObject Locate(string id)
         {
             if (id == "me" || id == "inventory")
@@ -38,7 +42,6 @@ namespace SwinAdventure
                 return null;
 
         }
-
 
     }
 }

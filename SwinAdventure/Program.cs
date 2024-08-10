@@ -29,25 +29,22 @@ namespace SwinAdventure
             player.Inventory.Put(computer);
 
 
-            //GameObject item = player.Locate("shovel");
-            //Console.WriteLine(item.ShortDescription);
-            //Console.WriteLine(player.Inventory.ItemList.Count);
+            GameObject item = player.Locate("shovel");
+            Console.WriteLine(item.ShortDescription);
+            Console.WriteLine(player.Inventory.ItemList.Count);
 
-            //GameObject p = player.Locate("gem");
-
-
-            //if (p == null)
-            //    Console.WriteLine("the player does not have this item");
-            //else
-            //    Console.WriteLine(p.Name);
+            GameObject p = player.Locate("gem");
 
 
-            List<string> s = player.Inventory.ItemList;
+            if (p == null)
+                Console.WriteLine("the player does not have this item");
+            else
+                Console.WriteLine(p.Name);
 
-            foreach (string item in s)
-            {
-                Console.WriteLine(item);
-            }
+
+            string s = player.FullDescription;
+
+            Console.WriteLine(s);
 
 
 

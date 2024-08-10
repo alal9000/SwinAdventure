@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SwinAdventure
 {
     [TestFixture]
-    public class TestSwinAdventure
+    public class TestIdentifiableObject
     {
         // arrange
         IdentifiableObject _identifiableObject;

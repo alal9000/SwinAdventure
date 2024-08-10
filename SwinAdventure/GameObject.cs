@@ -13,15 +13,15 @@ namespace SwinAdventure
         private string _name;
 
         // constructor
-        public GameObject(string[] ids, string name, string desc) : base(ids)
+        public GameObject(string[] idents, string name, string desc) : base(idents)
         {
             _description = desc;
             _name = name;
         }
 
         // properties
-        public string Name { get => _name; }
-        public string ShortDescription { get => _name + " (" + FirstId + ")"; }
-        public virtual string FullDescription { get => _description; }
+        public string Name { get { return _name; } }
+        public string ShortDescription { get { return _name + " (" + FirstId + ")"; } }
+        public virtual string FullDescription { get { return _description; } }
     }
 }

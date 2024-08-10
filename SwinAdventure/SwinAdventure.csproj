@@ -122,7 +122,7 @@
     <Compile Include="TestInventory.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="TestPlayer.cs" />
-    <Compile Include="TestSwinAdventure.cs" />
+    <Compile Include="TestIdentifiableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
