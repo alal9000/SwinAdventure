@@ -15,7 +15,7 @@ namespace SwinAdventure
         IdentifiableObject _identifiableObject;
 
         [SetUp]
-        public void SetUp() 
+        public void SetUp()
         {
             string[] test = { "fred", "bob" };
             _identifiableObject = new IdentifiableObject(test);

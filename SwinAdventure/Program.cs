@@ -14,11 +14,13 @@ namespace SwinAdventure
         {
             Player player = new Player("Aaron", "A mighty programmer");
 
-            //bool result1 = player.AreYou("me");
-            //bool result2 = player.AreYou("inventory");
+            //Console.WriteLine(player.FullDescription);
 
-            //Console.WriteLine(result1);
-            //Console.WriteLine(result2);
+            bool result1 = player.AreYou("me");
+            bool result2 = player.AreYou("inventory");
+
+            Console.WriteLine(result1);
+            Console.WriteLine(result2);
 
             Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
             Item sword = new Item(new string[] { "sword", "bronze sword" }, "a bronze sword", "This is a mighty fine sword");
