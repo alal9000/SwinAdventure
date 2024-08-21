@@ -21,13 +21,11 @@ namespace SwinAdventure
         public GameObject Locate(string id)
         {
 
-            if (id == "me" || id == "container")
+            if (AreYou(id))
                 return this;
 
-            if (this._inventory.Fetch(id) != null)
-                return this._inventory.Fetch(id);
-            else
-                return null;
+            // returns the item otherwise null if not found 
+            return _inventory.Fetch(id); 
         }
 
         // properties
@@ -35,7 +33,8 @@ namespace SwinAdventure
         {
             get
             {
-                return "In the " + this.Name + "you can see" + Inventory.ItemList;
+                string itemsDescription = string.Join("\n", Inventory.ItemList);
+                return $"In the {Name}, you can see:\n{itemsDescription}";
             }
         }
 

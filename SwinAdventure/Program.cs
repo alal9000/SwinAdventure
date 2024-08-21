@@ -12,41 +12,16 @@ namespace SwinAdventure
     {
         static void Main(string[] args)
         {
-            Player player = new Player("Aaron", "A mighty programmer");
-
-            //Console.WriteLine(player.FullDescription);
-
-            bool result1 = player.AreYou("me");
-            bool result2 = player.AreYou("inventory");
-
-            Console.WriteLine(result1);
-            Console.WriteLine(result2);
-
+            Bag bag = new Bag(new string[] { "leather bag", "backpack" }, "my bag", "A sturdy leather bag.");
+            Item potion = new Item(new string[] { "potion", "health potion" }, "my potion", "A small health potion.");
             Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
-            Item sword = new Item(new string[] { "sword", "bronze sword" }, "a bronze sword", "This is a mighty fine sword");
-            Item computer = new Item(new string[] { "pc", "computer" }, "a small computer", "This is a mighty fine computer");
+            bag.Inventory.Put(potion);
+            bag.Inventory.Put(shovel);
 
-            player.Inventory.Put(shovel);
-            player.Inventory.Put(sword);
-            player.Inventory.Put(computer);
-
-
-            GameObject item = player.Locate("shovel");
-            Console.WriteLine(item.ShortDescription);
-            Console.WriteLine(player.Inventory.ItemList.Count);
-
-            GameObject p = player.Locate("gem");
-
-
-            if (p == null)
-                Console.WriteLine("the player does not have this item");
-            else
-                Console.WriteLine(p.Name);
-
-
-            string s = player.FullDescription;
-
-            Console.WriteLine(s);
+            Bag purse = new Bag(new string[] { "red purse", "a small purse" }, "my purse", "A quality purse.");
+            bag.Inventory.Put(purse);
+            string fd = bag.FullDescription;
+            Console.WriteLine(fd);
 
 
 
