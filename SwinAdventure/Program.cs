@@ -12,18 +12,46 @@ namespace SwinAdventure
     {
         static void Main(string[] args)
         {
-            Bag bag = new Bag(new string[] { "leather bag", "backpack" }, "my bag", "A sturdy leather bag.");
-            Item potion = new Item(new string[] { "potion", "health potion" }, "my potion", "A small health potion.");
-            Item shovel = new Item(new string[] { "shovel", "spade" }, "a shovel", "This is a mighty fine shovel");
+            // Step 1: Get Player Details
+            Console.Write("Enter your player's name: ");
+            string playerName = Console.ReadLine();
+
+            Console.Write("Enter your player's description: ");
+            string playerDescription = Console.ReadLine();
+
+            Player player = new Player(playerName, playerDescription);
+
+            // Step 2: Create Items and Add to Inventory
+            Item sword = new Item(new string[] { "sword" }, "a sharp sword", "A finely crafted sharp sword.");
+            Item shield = new Item(new string[] { "shield" }, "a sturdy shield", "A sturdy wooden shield.");
+            player.Inventory.Put(sword);
+            player.Inventory.Put(shield);
+
+            // Step 3: Create Bag and Add to Inventory
+            Bag bag = new Bag(new string[] { "bag", "small bag" }, "a small bag", "A small leather bag.");
+            player.Inventory.Put(bag);
+
+            // Step 4: Add an Item to the Bag
+            Item potion = new Item(new string[] { "potion" }, "a healing potion", "A small vial of healing potion.");
             bag.Inventory.Put(potion);
-            bag.Inventory.Put(shovel);
 
-            Bag purse = new Bag(new string[] { "red purse", "a small purse" }, "my purse", "A quality purse.");
-            bag.Inventory.Put(purse);
-            string fd = bag.FullDescription;
-            Console.WriteLine(fd);
+            // Step 5: Command Loop
+            LookCommand lookCommand = new LookCommand();
+            string[] commandInput;
 
+            while (true)
+            {
+                Console.WriteLine("\nEnter a command (or 'quit' to exit):");
+                string input = Console.ReadLine();
 
+                if (input.ToLower() == "quit")
+                    break;
+
+                commandInput = input.Split(' ');
+
+                string result = lookCommand.Execute(player, commandInput);
+                Console.WriteLine(result);
+            }
 
         }
     }
