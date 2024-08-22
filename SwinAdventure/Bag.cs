@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SwinAdventure
 {
-    public class Bag : Item
+    public class Bag : Item, IHaveInventory
     {
         // fields
         private Inventory _inventory;
@@ -25,7 +25,7 @@ namespace SwinAdventure
                 return this;
 
             // returns the item otherwise null if not found 
-            return _inventory.Fetch(id); 
+            return _inventory.Fetch(id);
         }
 
         // properties

@@ -11,5 +11,7 @@ namespace SwinAdventure
         public Command(string[] idents) : base(idents)
         {
         }
+
+        public abstract string Execute(Player p, string[] text);
     }
 }

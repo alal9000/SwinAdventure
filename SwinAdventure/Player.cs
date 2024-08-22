@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace SwinAdventure
 {
-    public class Player : GameObject
+    public class Player : GameObject, IHaveInventory
     {
         // fields
         private Inventory _inventory;
@@ -33,15 +33,11 @@ namespace SwinAdventure
         // methods
         public GameObject Locate(string id)
         {
-            if (id == "me" || id == "inventory")
+            if (AreYou(id))
                 return this;
 
-            if (this._inventory.Fetch(id) != null)
-                return this._inventory.Fetch(id);           
-            else
-                return null;
+            return _inventory.Fetch(id);
 
         }
-
     }
 }
