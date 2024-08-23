@@ -40,7 +40,7 @@ namespace SwinAdventure
                 container = FetchContainer(p, text[4].ToLower());
 
                 if (container == null)
-                    return $"I cannot find the {text[4]}";              
+                    return $"I can't find the {text[4]}";              
             }
 
             return LookAtIn(itemId, container);
@@ -62,7 +62,7 @@ namespace SwinAdventure
             if (item != null)
                 return item.FullDescription;
 
-            return $"I cannot find the {thingId} in the {container.Name}";
+            return $"I can't find the {thingId}";
         }
     }
 }

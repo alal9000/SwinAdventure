@@ -24,8 +24,11 @@ namespace SwinAdventure
             // Step 2: Create Items and Add to Inventory
             Item sword = new Item(new string[] { "sword" }, "a sharp sword", "A finely crafted sharp sword.");
             Item shield = new Item(new string[] { "shield" }, "a sturdy shield", "A sturdy wooden shield.");
+            Item gem = new Item(new string[] { "gem" }, "my gem", "A bright red gem");
+           
             player.Inventory.Put(sword);
             player.Inventory.Put(shield);
+            player.Inventory.Put(gem);
 
             // Step 3: Create Bag and Add to Inventory
             Bag bag = new Bag(new string[] { "bag", "small bag" }, "a small bag", "A small leather bag.");
