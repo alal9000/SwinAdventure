@@ -12,7 +12,7 @@ namespace SwinAdventure
     {
         static void Main(string[] args)
         {
-            // Step 1: Get Player Details
+            // Get Player Details
             Console.Write("Enter your player's name: ");
             string playerName = Console.ReadLine();
 
@@ -21,24 +21,22 @@ namespace SwinAdventure
 
             Player player = new Player(playerName, playerDescription);
 
-            // Step 2: Create Items and Add to Inventory
-            Item sword = new Item(new string[] { "sword" }, "a sharp sword", "A finely crafted sharp sword.");
-            Item shield = new Item(new string[] { "shield" }, "a sturdy shield", "A sturdy wooden shield.");
+            // Create Items and Add to Inventory
+            Item sword = new Item(new string[] { "sword" }, "my sword", "A finely crafted sharp sword.");
             Item gem = new Item(new string[] { "gem" }, "my gem", "A bright red gem");
            
             player.Inventory.Put(sword);
-            player.Inventory.Put(shield);
             player.Inventory.Put(gem);
 
-            // Step 3: Create Bag and Add to Inventory
-            Bag bag = new Bag(new string[] { "bag", "small bag" }, "a small bag", "A small leather bag.");
+            // Create Bag and Add to Inventory
+            Bag bag = new Bag(new string[] { "bag", "small bag" }, "my bag", "A small leather bag.");
             player.Inventory.Put(bag);
 
-            // Step 4: Add an Item to the Bag
+            // Add an Item to the Bag
             Item potion = new Item(new string[] { "potion" }, "a healing potion", "A small vial of healing potion.");
             bag.Inventory.Put(potion);
 
-            // Step 5: Command Loop
+            // Command Loop
             LookCommand lookCommand = new LookCommand();
             string[] commandInput;
 
